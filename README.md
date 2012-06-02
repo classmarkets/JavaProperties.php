@@ -8,16 +8,17 @@ It should be completely compliant with
 
 ## INTERFACE
 ```php
-class \Classmarkets\JavaProperties implements \ArrayAccess {
+<?php
+class Classmarkets\JavaProperties implements \ArrayAccess {
     void loadResource($url, $streamContext = null);
     void loadString($string);
-
     array getAll();
 }
 ```
 
 ## SYNOPSIS
 ```php
+<?php
 $properties = new Classmarkets\JavaProperties;
     
 $properties->loadString("foo: bar");
