@@ -2,7 +2,7 @@
 
 namespace Classmarkets;
 
-require_once(__DIR__ . '/JavaProperties.php');
+require_once(__DIR__ . '/../../src/Classmarkets/JavaProperties.php');
 
 class JavaPropertiesTest extends \PHPUnit_Framework_TestCase {
     private $properties;
