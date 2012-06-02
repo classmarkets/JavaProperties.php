@@ -14,10 +14,10 @@ class JavaProperties implements \ArrayAccess {
         return $this->properties;
     }
 
-    public function loadResource($uri, $streamContext = null) {
-        $string = @file_get_contents($uri, false, $streamContext);
+    public function loadResource($url, $streamContext = null) {
+        $string = @file_get_contents($url, false, $streamContext);
         if($string === false) {
-            throw new \InvalidArgumentException("failed to open stream: No such file or directory: '$uri'");
+            throw new \InvalidArgumentException("failed to open stream: No such file or directory: '$url'");
         }
 
         $this->loadString($string);
