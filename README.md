@@ -9,7 +9,8 @@ It should be completely compliant with
 ## INTERFACE
 ```php
 <?php
-class Classmarkets\JavaProperties implements \ArrayAccess {
+class Classmarkets\JavaProperties implements \ArrayAccess
+{
     void loadResource($url, $streamContext = null);
     void loadString($string);
     array getAll();
