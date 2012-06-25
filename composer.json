@@ -1,0 +1,18 @@
+{
+    "name": "classmarkets/javaproperties.php",
+    "type": "library",
+    "description": "A class for loading Java properties files in PHP",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter Schultz",
+            "email": "peter.schultz@classmarkets.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": { "Classmarkets": "src" }
+    }
+}

@@ -1,23 +1,27 @@
 <?php
 
-namespace Classmarkets;
+namespace Classmarkets\Tests;
 
-require_once(__DIR__ . '/../../src/Classmarkets/JavaProperties.php');
+use Classmarkets\JavaProperties;
 
-class JavaPropertiesTest extends \PHPUnit_Framework_TestCase {
+class JavaPropertiesTest extends \PHPUnit_Framework_TestCase
+{
     private $properties;
 
-    protected function setUp() {
+    protected function setUp()
+    {
         $this->properties = new JavaProperties();
     }
 
-    public function testEmptyString() {
+    public function testEmptyString()
+    {
         $props = $this->properties;
         $props->loadString('');
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testEmptyFile() {
+    public function testEmptyFile()
+    {
         $props = $this->properties;
         $props->loadResource('file:///dev/null');
         $this->assertEquals(array(), $props->getAll());
@@ -26,31 +30,36 @@ class JavaPropertiesTest extends \PHPUnit_Framework_TestCase {
     /**
      * @expectedException InvalidArgumentException
      */
-    public function testNonExistentFile() {
+    public function testNonExistentFile()
+    {
         $props = $this->properties;
         $props->loadResource(sprintf('file://%s/%s/%s', sys_get_temp_dir(), uniqid(), uniqid()));
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testSingleProperty() {
+    public function testSingleProperty()
+    {
         $props = $this->properties;
         $props->loadString('foo=bar');
         $this->assertEquals(array('foo' => 'bar'), $props->getAll());
     }
 
-    public function testLeadingWhitespace() {
+    public function testLeadingWhitespace()
+    {
         $props = $this->properties;
         $props->loadString('   foo=bar');
         $this->assertEquals(array('foo' => 'bar'), $props->getAll());
     }
 
-    public function testEmptyLines() {
+    public function testEmptyLines()
+    {
         $props = $this->properties;
         $props->loadString("\n\n\n");
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testCrazyWhitespace() {
+    public function testCrazyWhitespace()
+    {
         $props = $this->properties;
         $string = <<<_EOS
 
@@ -66,61 +75,71 @@ _EOS;
         $this->assertEquals(array('foo' => 'bar', 'bar' => 'baz'), $props->getAll());
     }
 
-    public function testShellComment() {
+    public function testShellComment()
+    {
         $props = $this->properties;
         $props->loadString('#foo=bar');
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testBangComment() {
+    public function testBangComment()
+    {
         $props = $this->properties;
         $props->loadString('!foo=bar');
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testCommentWithLeadingWhiteSpace() {
+    public function testCommentWithLeadingWhiteSpace()
+    {
         $props = $this->properties;
         $props->loadString('  # foo=bar');
         $this->assertEquals(array(), $props->getAll());
     }
 
-    public function testColonSeparator() {
+    public function testColonSeparator()
+    {
         $props = $this->properties;
         $props->loadString('foo:bar');
         $this->assertEquals(array('foo' => 'bar'), $props->getAll());
     }
 
-    public function testSpaceSeparator() {
+    public function testSpaceSeparator()
+    {
         $props = $this->properties;
         $props->loadString('foo bar');
         $this->assertEquals(array('foo' => 'bar'), $props->getAll());
     }
 
-    public function testSeparatorSurroundedByWhitespace() {
+    public function testSeparatorSurroundedByWhitespace()
+    {
         $props = $this->properties;
         $props->loadString("foo = bar\nbar :\tbaz\n");
         $this->assertEquals(array('foo' => 'bar', 'bar' => 'baz'), $props->getAll());
     }
 
-    public function testLogicalLine() {
+    public function testLogicalLine()
+    {
         $props = $this->properties;
         $props->loadString("foo = foo bar\\\n   baz\n");
         $this->assertEquals(array('foo' => 'foo barbaz'), $props->getAll());
     }
 
-    public function testEmptyValue() {
+    public function testEmptyValue()
+    {
         $props = $this->properties;
         $props->loadString("foo =");
         $this->assertEquals(array('foo' => ''), $props->getAll());
     }
 
-    public function testUnicodes() {
+    public function testUnicodes()
+    {
         $props = $this->properties;
         $props->loadString("foo = \\u0062\\u0061\\u0072");
         $this->assertEquals(array('foo' => 'bar'), $props->getAll());
     }
 
-    public function testMultipleLoads() {
+    public function testMultipleLoads()
+    {
         $props = $this->properties;
 
         $props->loadString("foo = bar");
@@ -134,7 +153,8 @@ _EOS;
     }
 
     /*
-    public function testEscapedSeparator() {
+    public function testEscapedSeparator()
+    {
         $this->markTestSkipped('not yet implemented');
         $props = $this->properties;
         $props->loadString("foo\\:bar: baz");
