@@ -42,17 +42,17 @@ yields:
 * PHP has to be compiled `--with-pcre-regex`
 * `allow_url_fopen = on` for network streams. This is implied by fopen. Refer to [the docs](http://php.net/manual/en/function.fopen.php) for details.
 
-## Installation with Composer
+## INSTALLATION WITH COMPOSER
 Here are the required entries in your composer.json:
 
 ```json
 {
-    "repositories": [                                                                                                                                                                                   
-        {   
+    "repositories": [
+        {
             "type": "vcs",
             "url": "https://github.com/classmarkets/JavaProperties.php"
-        }   
-    ],  
+        }
+    ],
     "require": {
         "classmarkets/javaproperties.php": "*"
     }
