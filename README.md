@@ -42,6 +42,24 @@ yields:
 * PHP has to be compiled `--with-pcre-regex`
 * `allow_url_fopen = on` for network streams. This is implied by fopen. Refer to [the docs](http://php.net/manual/en/function.fopen.php) for details.
 
+## Installation with Composer
+Here are the required entries in your composer.json:
+
+```json
+{
+    "repositories": [                                                                                                                                                                                   
+        {   
+            "type": "vcs",
+            "url": "https://github.com/classmarkets/JavaProperties.php"
+        }   
+    ],  
+    "require": {
+        "classmarkets/javaproperties.php": "*"
+    }
+}
+```
+After you have added them just run `composer.phar update`. We currently do _not_ have plans to publish this package on [packagist](http://packagist.org), sorry.
+
 ## KNOWN LIMITATIONS
 
 * Escaped key-value-delimiters are not supported, e. g. `foo\:bar = baz` will _not_ result in `[ 'foo:bar' => 'baz' ]`, but `[ 'foo\' => 'bar = baz' ]`. 
