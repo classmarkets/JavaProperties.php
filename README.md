@@ -1,5 +1,7 @@
 # JavaProperties.php
 
+[![Build Status](https://secure.travis-ci.org/classmarkets/JavaProperties.php.png)](http://travis-ci.org/classmarkets/JavaProperties.php)
+
 Parse Java properties files in PHP.
 
 This class allows you to parse Java properties files or strings in PHP.
